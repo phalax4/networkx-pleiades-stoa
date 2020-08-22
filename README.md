@@ -23,3 +23,8 @@ hegemonic influence over time during different periods.
 https://www.edureka.co/blog/spark-graphx/
 https://databricks.com/blog/2015/04/14/running-spark-graphx-algorithms-on-library-of-congress-subject-heading-skos.html
 
+
+https://dev.to/julienassouline/let-s-get-started-with-react-and-d3-2nd7
+https://observablehq.com/@d3/force-directed-graph
+https://gist.github.com/jose187/4733747
+
