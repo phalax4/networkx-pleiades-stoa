@@ -27,4 +27,4 @@ https://databricks.com/blog/2015/04/14/running-spark-graphx-algorithms-on-librar
 https://dev.to/julienassouline/let-s-get-started-with-react-and-d3-2nd7
 https://observablehq.com/@d3/force-directed-graph
 https://gist.github.com/jose187/4733747
-
+https://www.d3indepth.com/force-layout/

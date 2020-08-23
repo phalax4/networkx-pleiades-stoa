@@ -1,6 +1,22 @@
 import { forceManyBody, scaleLinear, extent, drag, forceCenter, event, forceSimulation, forceLink, create, scaleOrdinal, schemeCategory10 } from "d3";
 import React, { useState, useEffect, useRef } from "react"
+import { StaticQuery, graphql } from "gatsby";
+import JSONData from "../../content/miserables.json"
 
+
+// graphql`
+// query VisualItemsQuery {
+//   jsonData {
+//     edges {
+//       node {
+//         label
+//         link
+//       }
+//     }
+//   }
+// }
+
+// `
 function RandomData() {
     const data = [...Array(100)].map((e, i) => {
       return {
@@ -13,8 +29,7 @@ function RandomData() {
   }
 
   function drag_config(simulation) {
-      
-  
+       
     function dragstarted(d) {
       if (!event.active) simulation.alphaTarget(0.3).restart();
       d.fx = d.x;
@@ -37,13 +52,20 @@ function RandomData() {
         .on("drag", dragged)
         .on("end", dragended);
   }
+
+    
+  function color_config(d) {
+    const scale = scaleOrdinal(schemeCategory10);
+    return d => scale(d.group);
+  }
+
   function Chart (){
 
     const svg_element = useRef(null);
 
 
-    const height = 500;
-    const width = 600;
+    const height = 600;
+    const width = 954;
     const data = {
       "nodes":[
         {"name":"node1","id":1},
@@ -53,16 +75,18 @@ function RandomData() {
       ],
       "links":[
         {"source":2,"target":1,"weight":1},
-        {"source":2,"target":4,"weight":3}
+        {"source":2,"target":4,"weight":3},
+        {"source":4,"target":3,"weight":3}
+
       ]
     }
 
-    const links = data.links.map(d => Object.create(d));
-    const nodes = data.nodes.map(d => Object.create(d));
+    const links = JSONData.links.map(d => Object.create(d));
+    const nodes = JSONData.nodes.map(d => Object.create(d));
   
     const simulation = forceSimulation(nodes)
         .force("link", forceLink(links).id(d => d.id))
-        .force("charge", forceManyBody())
+        .force("charge", forceManyBody().strength(-10))
         .force("center", forceCenter(width / 2, height / 2));
   
     const svg = create("svg")
@@ -90,7 +114,10 @@ function RandomData() {
       .data(nodes)
       .join("circle")
         .attr("r", 5)
-        .attr("fill", color)
+        .attr("fill", (d) =>{
+          const scale = scaleOrdinal(schemeCategory10);
+          return d => scale(d.group);
+        })
         .call(drag_config(simulation));
   
     node.append("title")
@@ -125,11 +152,6 @@ function RandomData() {
 
 
    
-  
-  function color() {
-    const scale = scaleOrdinal(schemeCategory10);
-    return d => scale(d.group);
-  }
 
   
   
