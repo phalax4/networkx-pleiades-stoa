@@ -1,4 +1,4 @@
-import { forceManyBody, scaleLinear, extent, drag, forceCenter, event, forceSimulation, forceLink, create, scaleOrdinal, schemeCategory10 } from "d3";
+import { forceX, forceY, forceManyBody, scaleLinear, extent, drag, forceCenter, event, forceSimulation, forceLink, create, scaleOrdinal, schemeCategory10 } from "d3";
 import React, { useState, useEffect, useRef } from "react"
 import { StaticQuery, graphql } from "gatsby";
 import JSONData from "../../content/miserables.json"
@@ -54,7 +54,7 @@ function RandomData() {
   }
 
     
-  function color_config(d) {
+  function color_config() {
     const scale = scaleOrdinal(schemeCategory10);
     return d => scale(d.group);
   }
@@ -85,12 +85,14 @@ function RandomData() {
     const nodes = JSONData.nodes.map(d => Object.create(d));
   
     const simulation = forceSimulation(nodes)
-        .force("link", forceLink(links).id(d => d.id))
-        .force("charge", forceManyBody().strength(-10))
-        .force("center", forceCenter(width / 2, height / 2));
-  
+        .force("link", forceLink(links).id(d => d.id).strength(1))
+        .force("charge", forceManyBody())
+        .force('center', forceCenter(width / 2, height / 2))
+        .stop();;
+
+      
     const svg = create("svg")
-        .attr("viewBox", [0, 0, width, height]);
+    .attr("viewBox", [0,0, width, height]);
 
         useEffect(()=>{
           if(svg_element.current){
@@ -98,6 +100,7 @@ function RandomData() {
           } 
       }, [svg]);
       
+    
   
     const link = svg.append("g")
         .attr("stroke", "#999")
@@ -113,27 +116,71 @@ function RandomData() {
       .selectAll("circle")
       .data(nodes)
       .join("circle")
-        .attr("r", 5)
-        .attr("fill", (d) =>{
-          const scale = scaleOrdinal(schemeCategory10);
-          return d => scale(d.group);
-        })
+        .attr("r", 2)
+        .attr("fill", d => scaleOrdinal(schemeCategory10)(d.group))
         .call(drag_config(simulation));
+        
   
     node.append("title")
         .text(d => d.id);
+
+        var loading = svg.append("text")
+        .attr("dy", "0.35em")
+        .attr("text-anchor", "middle")
+        .attr("font-family", "sans-serif")
+        .attr("font-size", 10)
+        .text("Simulating. One moment please…");
+
+        // function tick() {
+
+        //   for ( i = 0; i < nodes.length; i++ ) {
+        //     var node = nodes[i];
+        //     node.cx = node.x;
+        //     node.cy = node.y;
+        //   }
+        // }
+
+        
+
+        function renderGraph() {
+          // Run the layout a fixed number of times.
+          // The ideal number of times scales with graph complexity.
+          // Of course, don't run too long—you'll hang the page!
+          // const NUM_ITERATIONS = 100;
+          // force.tick(NUM_ITERATIONS);
+          // force.stop();
+        
+          // See https://github.com/d3/d3-force/blob/master/README.md#simulation_tick
+          for (var i = 0, n = Math.ceil(Math.log(simulation.alphaMin()) / Math.log(1 - simulation.alphaDecay())); i < n; ++i) {
+            simulation.tick();
+          }
+              link
+            .attr("x1", d => d.source.x)
+            .attr("y1", d => d.source.y)
+            .attr("x2", d => d.target.x)
+            .attr("y2", d => d.target.y);
+    
+        node
+            .attr("cx", d => d.x)
+            .attr("cy", d => d.y);
+
+            loading.remove();
+          }
+                  // Use a timeout to allow the rest of the page to load first.
+        setTimeout(renderGraph, 10);
+
   
-    simulation.on("tick", () => {
-      link
-          .attr("x1", d => d.source.x)
-          .attr("y1", d => d.source.y)
-          .attr("x2", d => d.target.x)
-          .attr("y2", d => d.target.y);
+    // simulation.on("tick", () => {
+    //   link
+    //       .attr("x1", d => d.source.x)
+    //       .attr("y1", d => d.source.y)
+    //       .attr("x2", d => d.target.x)
+    //       .attr("y2", d => d.target.y);
   
-      node
-          .attr("cx", d => d.x)
-          .attr("cy", d => d.y);
-    });
+    //   node
+    //       .attr("cx", d => d.x)
+    //       .attr("cy", d => d.y);
+    // });
   
     // invalidation.then(() => simulation.stop());
   
@@ -147,7 +194,7 @@ function RandomData() {
       }}>
           <div ref={svg_element}/>
       </div>
-  );
+    );
   }
 
 
