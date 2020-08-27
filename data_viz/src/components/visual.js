@@ -1,8 +1,9 @@
 import { forceX, forceY, forceManyBody, scaleLinear, extent, drag, forceCenter, event, forceSimulation, forceLink, create, scaleOrdinal, schemeCategory10 } from "d3";
 import React, { useState, useEffect, useRef } from "react"
 import { StaticQuery, graphql } from "gatsby";
-import JSONData from "../../content/miserables.json"
-
+import JSONData from "../../content/graph.json"
+import {Sigma, RandomizeNodePositions, RelativeSize,EdgeShapes,NodeShapes,ForceAtlas2, ForceLink} from 'react-sigma';
+import ForceGraph2D from 'react-force-graph-2d';
 
 // graphql`
 // query VisualItemsQuery {
@@ -244,5 +245,19 @@ function Scatter() {
       </div>
     );
   }
+
+function MySigmaChart(){
+  const links = JSONData.edges.map(d => Object.create(d));
+  const nodes = JSONData.nodes.map(d => Object.create(d));
+
+  let myGraph = {nodes: nodes, links: links};
+  return (
+    <ForceGraph2D
+    graphData={myGraph}
+  />
+  );
+}
+
+
   
-  export default Chart;
+ export default MySigmaChart;
