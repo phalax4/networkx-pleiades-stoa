@@ -4,20 +4,8 @@ import { StaticQuery, graphql } from "gatsby";
 import JSONData from "../../content/graph.json"
 import {Sigma, RandomizeNodePositions, RelativeSize,EdgeShapes,NodeShapes,ForceAtlas2, ForceLink} from 'react-sigma';
 import ForceGraph2D from 'react-force-graph-2d';
+import {sigma} from 'sigma';
 
-// graphql`
-// query VisualItemsQuery {
-//   jsonData {
-//     edges {
-//       node {
-//         label
-//         link
-//       }
-//     }
-//   }
-// }
-
-// `
 function RandomData() {
     const data = [...Array(100)].map((e, i) => {
       return {
@@ -246,18 +234,79 @@ function Scatter() {
     );
   }
 
+  function MyVisChart() {
+      // create an array with nodes
+
+
+  // Let's first initialize sigma:
+  var s = new sigma('container');
+
+  // Then, let's add some data to display:
+  s.graph.addNode({
+    // Main attributes:
+    id: 'n0',
+    label: 'Hello',
+    // Display attributes:
+    x: 0,
+    y: 0,
+    size: 1,
+    color: '#f00'
+  }).addNode({
+    // Main attributes:
+    id: 'n1',
+    label: 'World !',
+    // Display attributes:
+    x: 1,
+    y: 1,
+    size: 1,
+    color: '#00f'
+  }).addEdge({
+    id: 'e0',
+    // Reference extremities:
+    source: 'n0',
+    target: 'n1'
+  });
+
+  // Finally, let's ask our sigma instance to refresh:
+  s.refresh();
+
+  return (
+    <div style={{
+      height: 700,
+      width: 964,
+      border: `1px solid`,
+    }}>
+    < div  id="container"></div>
+    </div>
+
+  );
+  }
+
 function MySigmaChart(){
   const links = JSONData.edges.map(d => Object.create(d));
   const nodes = JSONData.nodes.map(d => Object.create(d));
 
   let myGraph = {nodes: nodes, links: links};
   return (
-    <ForceGraph2D
-    graphData={myGraph}
-  />
+    <div style={{
+      height: 700,
+      width: 964,
+      border: `1px solid`,
+    }}>
+      <ForceGraph2D
+          zoom={10000,10}
+          width="964"
+          height="700"
+          cooldownTime="12000"
+          enablePointerInteraction={false}
+          graphData={myGraph}
+          enableNodeDrag={false}
+        />
+      </div>
+    
   );
 }
 
 
   
- export default MySigmaChart;
+ export default MyVisChart;
