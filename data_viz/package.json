@@ -20,10 +20,10 @@
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-force-graph": "^1.36.7",
     "react-force-graph-2d": "^1.17.4",
+    "react-force-graph-3d": "^1.18.5",
     "react-helmet": "^6.1.0",
-    "react-sigma": "^1.2.34",
-    "sigma": "^2.0.0-alpha32",
     "vis-data": "^7.0.0",
     "vis-network": "^8.2.0"
   },
