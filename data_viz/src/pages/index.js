@@ -9,8 +9,8 @@ import SEO from "../components/seo"
 const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
+    <h1>Graph Networks</h1>
+    <p>Dataset from Pleiades</p>
     <p>Now go build something great.</p>
     <MyChart/>
     <Link to="/page-2/">Go to page 2</Link> <br />

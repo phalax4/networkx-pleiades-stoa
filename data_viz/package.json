@@ -24,6 +24,7 @@
     "react-force-graph-2d": "^1.17.4",
     "react-force-graph-3d": "^1.18.5",
     "react-helmet": "^6.1.0",
+    "shards-react": "^1.0.3",
     "vis-data": "^7.0.0",
     "vis-network": "^8.2.0"
   },

@@ -28,3 +28,6 @@ https://dev.to/julienassouline/let-s-get-started-with-react-and-d3-2nd7
 https://observablehq.com/@d3/force-directed-graph
 https://gist.github.com/jose187/4733747
 https://www.d3indepth.com/force-layout/
+https://medium.com/tech-eatwith/how-to-use-react-refs-with-useeffect-hooks-9a0b31a7b398
+https://github.com/vasturiano/react-force-graph/blob/master/example/camera-auto-orbit/index.html
+https://github.com/vasturiano/react-force-graph/blob/master/example/fit-to-canvas/index.html

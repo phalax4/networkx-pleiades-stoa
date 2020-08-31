@@ -1,11 +1,40 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
+import {
+Navbar,
+NavbarToggler,
+NavbarBrand,
+Nav,
+NavItem,
+NavLink,
+Dropdown,
+DropdownToggle,
+DropdownMenu,
+DropdownItem,
+InputGroup,
+InputGroupAddon,
+InputGroupText,
+FormInput,
+Collapse
+} from "shards-react";
 
 const Header = ({ siteTitle }) => (
+
+//   <Navbar   style={{
+//         //  background: ``,
+//          marginBottom: `1.90rem`,
+//        }}
+
+//     type="light" theme="primary" expand="md">
+//   <Nav navbar className="ml-auto">
+//   <NavbarBrand href="#">Home</NavbarBrand>
+
+//           </Nav>
+// </Navbar>
   <header
     style={{
-      background: `rebeccapurple`,
+      background: ``,
       marginBottom: `1.45rem`,
     }}
   >
