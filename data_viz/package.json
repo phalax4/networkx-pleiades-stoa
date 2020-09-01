@@ -24,9 +24,8 @@
     "react-force-graph-2d": "^1.17.4",
     "react-force-graph-3d": "^1.18.5",
     "react-helmet": "^6.1.0",
-    "shards-react": "^1.0.3",
-    "vis-data": "^7.0.0",
-    "vis-network": "^8.2.0"
+    "react-icons": "^3.11.0",
+    "shards-react": "^1.0.3"
   },
   "devDependencies": {
     "prettier": "2.0.5"
@@ -42,7 +41,8 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "deploy": "gatsby build --prefix-paths && gh-pages -d public"
   },
   "repository": {
     "type": "git",

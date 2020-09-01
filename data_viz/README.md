@@ -97,3 +97,13 @@ Looking for more guidance? Full documentation for Gatsby lives [on the website](
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/gatsbyjs/gatsby-starter-default)
 
 <!-- AUTO-GENERATED-CONTENT:END -->
+
+https://codeburst.io/100-lines-of-code-4-rectangles-2-circles-1-react-svg-loading-spinner-518ed4d14280
+
+#compute page rank for most important nodes. Identify the most influential vertices in a graph based on connections - as a measure of centrality
+#find which node id's are not in the original set
+#finding community centers
+#change to directed graph?
+#https://docs.databricks.com/spark/latest/graph-analysis/graphframes/user-guide-python.html
+#http://snap.stanford.edu/class/cs224w-2017/projects/cs224w-9-final.pdf
+#https://neo4j.com/docs/graph-algorithms/current/labs-algorithms/strongly-connected-components/
