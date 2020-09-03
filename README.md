@@ -24,3 +24,19 @@ https://www.d3indepth.com/force-layout/
 https://medium.com/tech-eatwith/how-to-use-react-refs-with-useeffect-hooks-9a0b31a7b398
 https://github.com/vasturiano/react-force-graph/blob/master/example/camera-auto-orbit/index.html
 https://github.com/vasturiano/react-force-graph/blob/master/example/fit-to-canvas/index.html
+
+# Challenges
+* Issue with minified react and force graph 3d and vr libraries
+switched to just the 2d library, and used the gatsby workaround with loadable and config
+* Issue with aframe - on another machine, use only 2d library
+* performance of visualization
+react-sigma crashed
+d3 required too much tweaking, slow
+react force 2d - start with zoom out then zoom in, adjust cooldown ticker, disable node drag
+* foudn it hard to get sigmajs or vis.js vanilla to work with react, or read in gephx file.
+* in terms of jupyter notebook
+ number or nodes, number of links, communities, strong and weak connected components, page rank, change to directed??
+ some nodes missing titles
+
+some challenges in using what connections, dont add extra connections as nodes in. instead of id use uri.
+

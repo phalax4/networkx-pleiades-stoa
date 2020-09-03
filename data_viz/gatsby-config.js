@@ -15,14 +15,14 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `data`,
-        path: `${__dirname}/content`,
-        ignore: [`**/\.*`], // ignore files starting with a dot
-      },
-    },
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     name: `data`,
+    //     path: `${__dirname}/content`,
+    //     ignore: [`**/\.*`], // ignore files starting with a dot
+    //   },
+    // },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
